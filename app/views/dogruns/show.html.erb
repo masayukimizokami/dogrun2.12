@@ -1,0 +1,93 @@
+<p id="notice"><%= notice %></p>
+
+ <div class="room-show-image">
+  <%= image_tag @dogrun.image ,class:'show-image'%>
+ </div>
+<p>
+  <strong>ドッグラン名</strong>
+  <%= @dogrun.dogrun_name %>
+</p>
+
+<p>
+  <strong>住所</strong>
+  <%= @dogrun.address %>
+</p>
+
+<p>
+  <strong>金額</strong>
+  <%= @dogrun.price %>
+</p>
+
+<p>
+  <strong>ドッグラン情報</strong>
+  <%= @dogrun.pr %>
+</p>
+
+<%= link_to 'Edit', edit_dogrun_path(@dogrun) %> 
+
+<hr>
+
+<h1>New Comment</h1>
+
+<!--新規コメント-->
+<%= form_with(model: @comment) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.each do |error| %>
+          <li><%= @error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contents %>
+    <%= form.text_area :contents %>
+  </div>
+
+  <%= form.hidden_field :dogrun_id, value: @dogrun.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<!--投稿済みコメント-->
+<h1>Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Contents</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.title %></td>
+        <td><%= comment.contents %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Back', comments_path %>
+
+<hr>
+
+<%= link_to 'Back', dogruns_path %>
