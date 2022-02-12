@@ -1,3 +1,8 @@
+
+main{
+    background-color: bisque;
+    margin-top: 200px;
+}
 header{
     background-color: aquamarine;
     position: absolute;
@@ -10,11 +15,6 @@ header{
 }
 header h1{
     font-family: round($number: 0);
-}
-
-main{
-    background-color: bisque;
-    margin-top: 200px;
 }
 
 footer {
@@ -31,4 +31,11 @@ footer {
   footer h5{
     font-family: round($number: 0);
     color: azure;
+}
+
+.header-user-image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }

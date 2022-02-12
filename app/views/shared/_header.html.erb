@@ -1,37 +1,52 @@
-<div class="header-box">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <h1>DOGRANsなび</h1>
-    <ul>
-        <li>コメントを本を見ながら実装</li>
- 
-         <li>activestorageを入れる</li>
+<div class="header_area">     
+    <div class="lefterea">
+        
+        <div class="header-box">
+            <h1>DOGRANsなび</h1>
+            <ul>
+                <li>コメントを本を見ながら実装</li>
+                <li>ぷろふぃーるのedit飛ばすのをなんとかする</li>
+                <li>プロフィール、user関係のレイアウトを変更して、ヘッダーが出ないようにする</li>
 
-    </ul>
-</div>
+            </ul>
+            <%= search_form_for @q, url: search_dogruns_path do |f| %>
+              
+              <%= f.search_field :dogrun_name_or_address_cont ,placeholder: "キーワード検索" %>
+              <br>
+              <%= f.submit '検索' %>
+          <% end %>
+        </div>
 
-<!--ドッグラン登録・ログアウト-->
-         <div class="header-top-ul">
-            <% if user_signed_in? %>
-              <ul >
-                   <li><%= link_to "ドッグランを登録する", "/dogruns/new" ,class: "header-link"%></li>
-                   <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "header-link"%></li>
-              </ul>
-            <% else %>
-               <div class="logbutton">
-                        <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>   
-                        <%= link_to "新規登録", new_user_registration_path,  class: "button is-warning is-light" %>
-                    </div>
+        <!--ドッグラン登録・ログアウト-->
+                <div class="header-top-ul">
+                    <% if user_signed_in? %>
+                      <ul >
+                          <li><%= link_to "ドッグランを登録する", "/dogruns/new" ,class: "header-link"%></li>
+                          <li><%= link_to("プロフィール", "/profiles/#{current_user.id}/edit", {class: "sidebar-profile"}) %></li>
+                          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "header-link"%></li>
+                      </ul>
+                      <div class="user_icon"> 
+                        <% if current_user.image.attached? %>
+                          <%= image_tag current_user.image,class: 'header-user-image' %>
+                        <% else %>
+                          <%= image_tag 'no-image.user.png' ,class: 'header-user-image'%>
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <div class="logbutton">
+                                <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>   
+                                <%= link_to "新規登録", new_user_registration_path,  class: "button is-warning is-light" %>
+                            </div>
 
-            <% end %>
-          </div>
+                    <% end %>
+                  </div>
 
-<!--検索-->
-             
+        <!--検索-->
+                    
 
-<!--ユーザー名-->
- <div class="right_area">  
+        <!--ユーザー名-->
+        <div class="right_area">  
                 <% if user_signed_in? %>
                  <div class="user_info">
                           <div class="user_name">
@@ -41,5 +56,8 @@
                          
                  </div>
                 <% end %>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-   </div> 
+           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        </div> 
+      
+    </div>
+</div>

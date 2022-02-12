@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'user/:id' => 'user#show'
+  get 'user/:id/edit' => 'user#edit'
+  patch 'user/:id'  => 'user#update'
+  #get 'profiles'     => 'profiles#index'
+  #get 'profiles/:id' => 'profiles#show'
+  #get 'profiles/:id/edit' => 'profiles#edit'
+  #patch 'profiles/:id'  => 'profiles#update'
+  resources :profiles
   devise_for :users
   resources :comments
   resources :dogruns do
