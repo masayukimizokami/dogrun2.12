@@ -1,4 +1,5 @@
 class DogrunsController < ApplicationController
+  layout 'dogrun'
   before_action :set_q
 
   # トップページ
@@ -16,7 +17,8 @@ class DogrunsController < ApplicationController
   def show
     @dogrun = Dogrun.find(params[:id])
     @comment = Comment.new #新規コメント投稿
-    @comments = Comment.all
+    @comments = @dogrun.comments 
+    #@comments = Comment.all
   end
 
   # GET /dogruns/new

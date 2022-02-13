@@ -27,62 +27,54 @@
 
 <hr>
 
-<h1>New Comment</h1>
+ <h3>新規投稿</h3>
 
-<!--新規コメント-->
-<%= form_with(model: @comment) do |form| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+    <%= form_with model: @comment do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :title, "タイトル" %></th>
+          <td><%= f.text_field :title, class:"posts-content" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :contents, "コンテンツ" %></th>
+          <td><%= f.text_field :contents, class:"posts-content" %></td>
+        </tr>
+      </table>
+      <%= f.hidden_field :dogrun_id, value: @dogrun.id %>
+      <div>
+        <ul>
+          <li><%= f.submit "投稿を完了する"%></li>
+        </ul>
+      </div>
+    <% end %>
 
+    <div>
       <ul>
-        <% @comment.errors.each do |error| %>
-          <li><%= @error.full_message %></li>
-        <% end %>
+        <li><%= link_to "ユーザー情報一覧に戻る", :dogruns %></li>
       </ul>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<h1>投稿済みコメント</h1>
 
-  <div class="field">
-    <%= form.label :contents %>
-    <%= form.text_area :contents %>
-  </div>
+  <h3>投稿一覧</h3>
 
-  <%= form.hidden_field :dogrun_id, value: @dogrun.id %>
+    <table>
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<!--投稿済みコメント-->
-<h1>Comments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Contents</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.title %></td>
-        <td><%= comment.contents %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @comments.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td><%= post.contents %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 
 

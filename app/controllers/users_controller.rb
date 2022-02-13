@@ -1,5 +1,5 @@
-class UserController < ApplicationController
-
+class UsersController < ApplicationController
+  layout 'user'
 
    def edit
     @user = User.find(params[:id])

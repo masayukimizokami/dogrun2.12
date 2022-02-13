@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  layout 'profile'
+  before_action :set_q
  
   def index
   end
@@ -26,6 +28,10 @@ class ProfilesController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:profile, :image,:username)
+      params.require(:user).permit(:profile, :image,:name)
+    end
+
+    def set_q
+      @q = Dogrun.ransack(params[:q])
     end
 end

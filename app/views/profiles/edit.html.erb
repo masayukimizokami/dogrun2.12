@@ -2,7 +2,7 @@
           
             <div class="profile-edit">
                 <h1>プロフィールページ</h1>
-                  <%= form_for @user, :url => { :controller => :profiles, :action => :show }  do |f| %>
+                  <%= form_for @user do |f| %>
 
                     <div class="field">
                         <% if current_user.image.attached?%>
@@ -16,7 +16,7 @@
 
                   <div class="field">
                       <%= f.label :名前 ,class:'field-text'%><br />
-                      <%= f.text_field :username, autofocus: true, autocomplete: "名前",class:'field-box' %>
+                      <%= f.text_field :name, autofocus: true, autocomplete: "名前",class:'field-box' %>
                     </div>
 
                     <div class="field">
@@ -36,3 +36,4 @@
         
     </div>
 </div>
+<h1>ページの終わり</h1>

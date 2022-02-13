@@ -5,17 +5,10 @@
         <div class="header-box">
             <h1>DOGRANsなび</h1>
             <ul>
-                <li>コメントを本を見ながら実装</li>
-                <li>ぷろふぃーるのedit飛ばすのをなんとかする</li>
                 <li>プロフィール、user関係のレイアウトを変更して、ヘッダーが出ないようにする</li>
 
             </ul>
-            <%= search_form_for @q, url: search_dogruns_path do |f| %>
-              
-              <%= f.search_field :dogrun_name_or_address_cont ,placeholder: "キーワード検索" %>
-              <br>
-              <%= f.submit '検索' %>
-          <% end %>
+           
         </div>
 
         <!--ドッグラン登録・ログアウト-->
@@ -23,7 +16,7 @@
                     <% if user_signed_in? %>
                       <ul >
                           <li><%= link_to "ドッグランを登録する", "/dogruns/new" ,class: "header-link"%></li>
-                          <li><%= link_to("プロフィール", "/profiles/#{current_user.id}/edit", {class: "sidebar-profile"}) %></li>
+                          <li><%= link_to "設定ページ", user_path(current_user) ,class: "header-link"%></li>
                           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "header-link"%></li>
                       </ul>
                       <div class="user_icon"> 
@@ -50,7 +43,7 @@
                 <% if user_signed_in? %>
                  <div class="user_info">
                           <div class="user_name">
-                              <%= current_user.username %>
+                              <%= current_user.name %>
                           </div>
                          
                          
