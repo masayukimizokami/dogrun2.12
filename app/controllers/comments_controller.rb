@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   layout 'comment'
   before_action :set_q
+  before_action :authenticate_user!
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    @comment = current_user.comments
   end
 
   # GET /comments/1 or /comments/1.json
@@ -21,12 +22,13 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
       if @comment.save
         flash[:notice] = "投稿完了しました"
         redirect_to :dogruns
       else
         flash[:notice] = "投稿失敗しました"
-        render template: "dogruns/index"
+        render dogrun_path(params[:comment][:dogrun_id])
       end
   end
   

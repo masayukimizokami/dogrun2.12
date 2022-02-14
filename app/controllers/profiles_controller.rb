@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   layout 'profile'
   before_action :set_q
+  before_action :authenticate_user!
  
   def index
   end

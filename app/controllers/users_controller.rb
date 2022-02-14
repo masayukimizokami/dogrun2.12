@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   layout 'user'
 
+   def index
+    @dogrun = current_user.dogruns
+   end
+
    def edit
     @user = User.find(params[:id])
    end

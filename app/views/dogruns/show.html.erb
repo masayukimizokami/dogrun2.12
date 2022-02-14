@@ -39,6 +39,7 @@
           <th><%= f.label :contents, "コンテンツ" %></th>
           <td><%= f.text_field :contents, class:"posts-content" %></td>
         </tr>
+        
       </table>
       <%= f.hidden_field :dogrun_id, value: @dogrun.id %>
       <div>
@@ -61,16 +62,20 @@
     <table>
       <thead>
         <tr>
+          <th>USER</th>
           <th>タイトル</th>
           <th>コメント</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @comments.each do |post| %>
+        <% @comments.each do |comment| %>
           <tr>
-            <td><%= post.title %></td>
-            <td><%= post.contents %></td>
+            <td><%= comment.user_id %></td>
+            <td><%= comment.title %></td>
+            <td><%= comment.contents %></td>
+          
+
           </tr>
         <% end %>
       </tbody>

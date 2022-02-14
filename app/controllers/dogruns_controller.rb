@@ -1,7 +1,8 @@
 class DogrunsController < ApplicationController
   layout 'dogrun'
   before_action :set_q
-
+  before_action :authenticate_user!
+  
   # トップページ
   def index
     @dogruns = Dogrun.all
@@ -18,7 +19,6 @@ class DogrunsController < ApplicationController
     @dogrun = Dogrun.find(params[:id])
     @comment = Comment.new #新規コメント投稿
     @comments = @dogrun.comments 
-    #@comments = Comment.all
   end
 
   # GET /dogruns/new
@@ -34,6 +34,8 @@ class DogrunsController < ApplicationController
   # POST /dogruns or /dogruns.json
   def create
     @dogrun = Dogrun.new(dogrun_params)
+    @dogrun.user = current_user 
+
 
     respond_to do |format|
       if @dogrun.save

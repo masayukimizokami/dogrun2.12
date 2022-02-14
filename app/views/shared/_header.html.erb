@@ -5,8 +5,8 @@
         <div class="header-box">
             <h1>DOGRANsなび</h1>
             <ul>
-                <li>プロフィール、user関係のレイアウトを変更して、ヘッダーが出ないようにする</li>
-
+                <li></li>
+                 
             </ul>
            
         </div>
@@ -17,6 +17,8 @@
                       <ul >
                           <li><%= link_to "ドッグランを登録する", "/dogruns/new" ,class: "header-link"%></li>
                           <li><%= link_to "設定ページ", user_path(current_user) ,class: "header-link"%></li>
+                          <li><%= link_to "登録済みドッグランページ", users_path ,class: "header-link"%></li>
+                          <li><%= link_to "登録済みコメント", "/comments/" ,class: "header-link"%></li>
                           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "header-link"%></li>
                       </ul>
                       <div class="user_icon"> 
